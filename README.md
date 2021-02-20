@@ -1,8 +1,8 @@
-# log4z
-轻量级跨平台c++日志库（android/linux/windows）
+# log4z 轻量级跨平台c++日志库（android/linux/windows）
 
+经过测试log4z开源日志库在android平台上无法打印日志，所以修改使之能够同时兼容android平台
 
-使用教程
+# 简单使用教程
 
 #include "log4z.h"  
 #include <iostream>  
