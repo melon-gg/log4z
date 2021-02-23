@@ -1391,6 +1391,8 @@ void LogerManager::showColorText(const char *text, int level)
     }
 
 #ifdef ANDROID
+    if(level == LOG_LEVEL_ALARM) level = LOG_LEVEL_DEBUG;
+    else if(level == LOG_LEVEL_TRACE) level = LOG_LEVEL_DEBUG;
     __android_log_print(level, ZOLANDROIDLOGTAG, "%s", text);
 #elif !defined(WIN32)
     printf("%s%s\e[0m", LOG_COLOR[level], text);
