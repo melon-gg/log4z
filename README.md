@@ -1,6 +1,6 @@
-# log4z 轻量级跨平台c++日志库（android/linux/windows）
+# log4z 轻量级跨平台c++日志库（android/linux/windows），支持日志信息简便过滤
 
-经过测试log4z开源日志库在android平台上无法打印日志，所以修改使之能够同时兼容android平台
+经过测试log4z开源日志库在android平台上无法打印日志，所以修改使之能够同时兼容android平台，同时在原有基础上添加日志过滤功能
 
 # 简单使用教程
 
@@ -33,3 +33,22 @@ int main(int argc, char *argv[])
     getchar();  
     return 0;  
 }  
+
+# 日志过滤
+
+    通过接口setLoggerFilter进行过滤掉不需要的日志信息或者选择需要的日志信息，这里修改了比较简单的字串处理规则，没有使用复杂的正则表达式进行匹配，
+    主要是为了方便使用，如果需要更复杂的过滤功能，自行去修改源代码。
+    
+    LOG_T           ---- 选择包含LOG_T的日志信息
+    ！LOG_T         ---- 过滤掉包含LOG_T的日志信息
+    ！LOG_T|!LOG_A  ---- 过滤掉包含LOG_T或者包含LOG_A的日志信息
+    
+    ILog4zManager::getInstance()->setLoggerFilter(LOG4Z_MAIN_LOGGER_ID, "!LOG_T");
+    //必须在启动前设置过滤规则
+    ILog4zManager::getInstance()->start();
+
+
+
+
+
+
